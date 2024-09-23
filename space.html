@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>知是学业社区 - 科研早培空间</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292f;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left,
+        .nav-center,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-right: 16px;
+            color: #24292f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .search-bar {
+            width: 300px;
+            padding: 5px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #24292f;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 0 rgba(208, 215, 222, 0.2);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .space-banner {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            padding: 24px 0;
+            margin-bottom: 24px;
+        }
+
+        .space-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .space-icon {
+            width: 64px;
+            height: 64px;
+            margin-right: 16px;
+            border-radius: 8px;
+        }
+
+        .space-details h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+        }
+
+        .space-details p {
+            margin: 0;
+            color: #57606a;
+        }
+
+        .main-content {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+        }
+
+        .sidebar {
+            width: 256px;
+            padding: 16px;
+            border-right: 1px solid #d0d7de;
+        }
+
+        .content {
+            flex: 1;
+            padding: 16px;
+        }
+
+        .category-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-list li {
+            margin-bottom: 8px;
+        }
+
+        .category-list a {
+            color: #0969da;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            appearance: none;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: #2da44e;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .topic-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .topic-item {
+            border-bottom: 1px solid #d0d7de;
+            padding: 16px 0;
+        }
+
+        .topic-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 4px;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .topic-meta {
+            font-size: 12px;
+            color: #57606a;
+        }
+
+        .pinned-items {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .pinned-item {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            flex: 1;
+            max-width: calc(33.33% - 11px);
+            box-shadow: 0 1px 0 rgba(27, 31, 36, 0.04);
+            transition: background-color 0.2s ease;
+        }
+
+        .pinned-item:hover {
+            background-color: #f6f8fa;
+        }
+
+        .filters {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 8px 16px;
+        }
+
+        .filter-group {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .filter-item {
+            font-size: 14px;
+            color: #24292f;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 5px 12px;
+            cursor: pointer;
+        }
+
+        .topic-link {
+            display: block;
+        }
+
+        .topic-link:hover .topic-title {
+            background-color: #f0f0f0;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .task-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .task-item {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .task-item.task-completed {
+            background-color: #f6f8fa;
+            /* 略微改变背景色 */
+        }
+
+        .task-item.task-completed .task-status {
+            color: #6e7781;
+            /* 使用灰色表示已截止 */
+            font-weight: 600;
+        }
+
+        .task-item.task-completed .task-title {
+            color: #57606a;
+            /* 稍微降低标题的对比度 */
+        }
+
+        .task-item.task-completed .task-deadline,
+        .task-item.task-completed .task-meta,
+        .task-item.task-completed .task-participants {
+            color: #8c959f;
+            /* 淡化其他文字的颜色 */
+        }
+
+        .task-item.task-completed .task-tag {
+            background-color: #f1f2f4;
+            /* 淡化标签的背景色 */
+            color: #656d76;
+            /* 淡化标签的文字颜色 */
+        }
+
+        .task-item.task-completed .vote-button {
+            opacity: 0.7;
+            /* 稍微降低投票按钮的透明度 */
+        }
+
+        .task-vote {
+            margin-right: 16px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .vote-button {
+            display: flex;
+            align-items: center;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 20px;
+            padding: 4px 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .vote-button:hover {
+            background-color: #e1e4e8;
+        }
+
+        .vote-icon {
+            margin-right: 4px;
+        }
+
+        .vote-count {
+            font-weight: 600;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .task-main {
+            flex-grow: 1;
+        }
+
+        .task-meta {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+        }
+
+        .task-type {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .task-creator {
+            font-weight: 600;
+            margin-right: 8px;
+        }
+
+        .task-date {
+            color: #6e7781;
+        }
+
+        .task-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #24292f;
+            margin-bottom: 8px;
+        }
+
+        .task-status-deadline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .task-status {
+            font-weight: 600;
+            color: #0366d6;
+            margin-bottom: 4px;
+        }
+
+        .task-deadline {
+            font-size: 14px;
+            color: #24292f;
+        }
+
+        .deadline-icon {
+            margin-right: 4px;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .task-tag {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #24292f;
+            text-decoration: none;
+        }
+
+        .task-tag:hover {
+            background-color: #e1e4e8;
+        }
+
+        .task-participants {
+            font-size: 14px;
+            color: #57606a;
+            display: flex;
+            align-items: center;
+        }
+
+        .participants-icon {
+            margin-right: 4px;
+            font-size: 16px;
+        }
+
+        /* 为临近截止日期的任务添加特殊样式 */
+        .task-item.deadline-near .task-deadline {
+            color: #d73a49;
+        }
+
+        .task-item.deadline-near .deadline-date {
+            font-weight: 700;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="container nav">
+            <div class="nav-left">
+                <a href="#" class="nav-item">🧀 知是学业社区</a>
+                <a href="#" class="nav-item">问答</a>
+                <a href="./space.html" class="nav-item">空间</a>
+                <a href="./team.html" class="nav-item">小队</a>
+            </div>
+            <div class="nav-center">
+                <input type="text" class="search-bar" placeholder="搜索...">
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-item">✉️</a>
+                <div class="user-info">
+                    <img src="/api/placeholder/32/32" alt="User Avatar" class="user-avatar">
+                    <span>用户名</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="space-banner">
+        <div class="container space-info">
+            <img src="/api/placeholder/64/64" alt="科研早培空间图标" class="space-icon">
+            <div class="space-details">
+                <h1>科研早培空间</h1>
+                <p>欢迎来到科研早培空间！这里是我们共同学习、探讨和成长的地方。参与各种研究课题，提升你的科研能力。</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container main-content">
+        <aside class="sidebar">
+            <h3>分类</h3>
+            <ul class="category-list">
+                <li><a href="#"><span>📊</span> 所有讨论</a></li>
+                <li><a href="#"><span>🏆</span> 赛题</a></li>
+                <li><a href="#"><span>📣</span> 公告</a></li>
+                <li><a href="#"><span>❓</span> 问答</a></li>
+                <li><a href="#"><span>💡</span> 想法</a></li>
+            </ul>
+        </aside>
+        <div class="content">
+            <div class="pinned-items">
+                <a href="#" class="pinned-item">
+                    <h3>📌 2024年科研早培项目启动</h3>
+                    <p>我们很高兴地宣布，2024年科研早培项目正式启动！请查看最新的赛题列表和参与方式。</p>
+                </a>
+                <a href="#" class="pinned-item">
+                    <h3>📌 AI驱动的教育创新赛题</h3>
+                    <p>探索AI技术如何改变传统教育模式，开发创新的学习工具和平台。</p>
+                </a>
+                <a href="#" class="pinned-item">
+                    <h3>📌 数据科学与可视化挑战</h3>
+                    <p>利用大数据和可视化技术，解决复杂的社会和科学问题。</p>
+                </a>
+            </div>
+            <div class="filters">
+                <div class="filter-group">
+                    <input type="text" class="search-bar" placeholder="在当前空间中搜索">
+                    <span class="filter-item">排序: 最新活动 ▼</span>
+                    <span class="filter-item">标签 ▼</span>
+                </div>
+                <a href="./create.html" class="btn btn-primary">新建内容</a>
+            </div>
+            <ul class="task-list">
+                <li class="task-item task-completed">
+                    <div class="task-vote">
+                        <button class="vote-button">
+                            <span class="vote-icon">↑</span>
+                            <span class="vote-count">15</span>
+                        </button>
+                    </div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <div class="task-main">
+                                <div class="task-meta">
+                                    <span class="task-creator">JamesSmith</span>
+                                    <span class="task-date">发布于 2024-03-01</span>
+                                </div>
+                                <a href="./task.html" class="task-link">
+                                    <div class="task-title">
+                                        基于GraphRAG的《计算机系统基础》课程助教构建项目
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="task-status-deadline">
+                                <div class="task-status">已结束</div>
+                                <div class="task-deadline">
+                                    <span class="deadline-icon">⏰</span>
+                                    <span class="deadline-date">2024-06-30</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-footer">
+                            <div class="task-tags">
+                                <a href="#" class="task-tag">AI</a>
+                                <a href="#" class="task-tag">教育</a>
+                            </div>
+                            <span class="task-participants" title="参与团队数">
+                                <span class="participants-icon">👥</span> 5 团队
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li class="task-item">
+                    <div class="task-vote">
+                        <button class="vote-button">
+                            <span class="vote-icon">↑</span>
+                            <span class="vote-count">8</span>
+                        </button>
+                    </div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <div class="task-main">
+                                <div class="task-meta">
+                                    <span class="task-creator">EmilyWang</span>
+                                    <span class="task-date">发布于 2024-03-05</span>
+                                </div>
+                                <a href="#" class="task-link">
+                                    <div class="task-title">
+                                        高性能数据库查询优化研究
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="task-status-deadline">
+                                <div class="task-status">招募中</div>
+                                <div class="task-deadline">
+                                    <span class="deadline-icon">⏰</span>
+                                    <span class="deadline-date">2024-08-31</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-footer">
+                            <div class="task-tags">
+                                <a href="#" class="task-tag">数据库</a>
+                            </div>
+                            <span class="task-participants" title="参与人数">
+                                <span class="participants-icon">👤</span> 12 人
+                            </span>
+                        </div>
+                    </div>
+                </li>
+
+                <li class="task-item">
+                    <div class="task-vote">
+                        <button class="vote-button">
+                            <span class="vote-icon">↑</span>
+                            <span class="vote-count">20</span>
+                        </button>
+                    </div>
+                    <div class="task-content">
+                        <div class="task-header">
+                            <div class="task-main">
+                                <div class="task-meta">
+                                    <span class="task-creator">DavidLiu</span>
+                                    <span class="task-date">发布于 2024-03-10</span>
+                                </div>
+                                <a href="#" class="task-link">
+                                    <div class="task-title">
+                                        基于深度学习的自然语言处理应用
+                                    </div>
+                                </a>
+                            </div>
+                            <div class="task-status-deadline">
+                                <div class="task-status">进行中</div>
+                                <div class="task-deadline">
+                                    <span class="deadline-icon">⏰</span>
+                                    <span class="deadline-date">2024-09-15</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="task-footer">
+                            <div class="task-tags">
+                                <a href="#" class="task-tag">AI</a>
+                                <a href="#" class="task-tag">NLP</a>
+                            </div>
+                            <span class="task-participants" title="参与团队数">
+                                <span class="participants-icon">👥</span> 4 队
+                            </span>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </main>
+</body>
+
+</html>

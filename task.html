@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>任务详情 - 知是学业社区</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292f;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .main-content {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-top: 24px;
+            padding: 24px;
+        }
+
+        .task-header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            z-index: 100;
+            padding-top: 16px;
+            padding-bottom: 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            border-bottom: 1px solid #d0d7de;
+            margin-bottom: 16px;
+        }
+
+        .task-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .task-meta {
+            font-size: 14px;
+            color: #57606a;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            appearance: none;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: #2da44e;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .btn-success {
+            color: #ffffff;
+            background-color: #28a745;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .system-property {
+            background-color: #e6f3ff;
+            border: 1px solid #bae3ff;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 12px;
+            color: #0969da;
+        }
+
+        .thread-item {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .thread-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            color: #57606a;
+            margin-bottom: 8px;
+        }
+
+        .subtask {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .subtask-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .subtask-title {
+            font-weight: 600;
+        }
+
+        .subtask-status {
+            font-size: 14px;
+            color: #57606a;
+        }
+
+        .upcoming-subtasks {
+            background-color: #f0f0f0;
+            border: 1px dashed #a0a0a0;
+            border-radius: 4px;
+            padding: 8px;
+            margin-top: 12px;
+        }
+
+        .upcoming-subtasks-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .upcoming-subtask-item {
+            font-size: 14px;
+            color: #57606a;
+        }
+
+        .submission-form {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            overflow: hidden;
+        }
+
+        .form-header {
+            background-color: #f1f8ff;
+            padding: 8px 16px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .form-content {
+            padding: 16px;
+            display: none;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 4px;
+            font-weight: 600;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 4px;
+        }
+
+        .btn-secondary {
+            color: #24292f;
+            background-color: #ffffff;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .btn-secondary:hover {
+            background-color: #f6f8fa;
+        }
+    </style>
+</head>
+
+<body>
+    <main class="container main-content">
+        <div class="task-header">
+            <div>
+                <h1 class="task-title">👥 基于GraphRAG的《计算机系统基础》课程助教构建项目</h1>
+                <div class="task-meta">
+                    发布者：JamesSmith | 发布时间：2024-03-01 | 类型：团队任务 | 参与团队：5 | 标签：AI, 教育
+                </div>
+            </div>
+            <button id="taskActionBtn" class="btn btn-primary" onclick="toggleTaskAction()">领取任务</button>
+        </div>
+
+        <div class="thread-item">
+            <div class="thread-meta">
+                <span>发布者：JamesSmith</span>
+                <span>发布时间：2024-03-01 10:00</span>
+            </div>
+            <div>
+                <h3>任务描述</h3>
+                <p>开发一个基于GraphRAG的智能课程助教系统，提升《计算机系统基础》课程的教学效果和学生学习体验。该系统应能够回答学生的问题，提供个性化的学习建议，并协助教师进行课程管理。</p>
+
+                <h3>任务要求</h3>
+                <ul>
+                    <li>利用最新的GraphRAG技术构建知识图谱</li>
+                    <li>实现自然语言处理功能，准确理解学生问题</li>
+                    <li>开发个性化推荐算法，为学生提供定制的学习路径</li>
+                    <li>设计直观的用户界面，方便学生和教师使用</li>
+                    <li>确保系统的可扩展性，以适应未来课程内容的更新</li>
+                </ul>
+
+                <h3>评分标准</h3>
+                <ul>
+                    <li>系统功能完整性（30%）</li>
+                    <li>AI模型的准确性和效率（25%）</li>
+                    <li>用户体验设计（20%）</li>
+                    <li>创新性（15%）</li>
+                    <li>文档质量和项目展示（10%）</li>
+                </ul>
+
+                <p>
+                    <span class="system-property">任务ID: TASK-2024-001</span>
+                    <span class="system-property">状态: 进行中</span>
+                    <span class="system-property">截止日期: 2024年6月30日 23:59</span>
+                    <span class="system-property">优先级: 高</span>
+                    <span class="system-property">估计工作量: 200小时</span>
+                </p>
+            </div>
+        </div>
+
+        <div class="subtask">
+            <div class="subtask-header">
+                <span class="subtask-title">子任务1: 构建知识图谱</span>
+                <span class="subtask-status">状态: 进行中 | <span class="system-property">截止日期: 2024-04-15</span></span>
+            </div>
+            <p>使用GraphRAG技术构建涵盖计算机系统基础核心概念的知识图谱。确保图谱能够有效地表示课程中的关键概念及其关系。</p>
+            <div class="upcoming-subtasks">
+                <div class="upcoming-subtasks-title">后续子任务:</div>
+                <div class="upcoming-subtask-item">2. 实现自然语言处理功能 <span class="system-property">预计开始: 2024-04-16</span>
+                </div>
+                <div class="upcoming-subtask-item">3. 开发用户界面 <span class="system-property">预计开始: 2024-05-16</span></div>
+            </div>
+        </div>
+
+        <div class="submission-form" id="submissionForm">
+            <div class="form-header" onclick="toggleForm()">
+                <h3>提交表单</h3>
+                <span id="formToggle">▼</span>
+            </div>
+            <div class="form-content" id="formContent">
+                <form>
+                    <div class="form-group">
+                        <label class="form-label" for="progress-report">进度报告</label>
+                        <textarea id="progress-report" class="form-input" rows="4"
+                            placeholder="请详细描述本阶段的工作进展..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="challenges">遇到的挑战</label>
+                        <textarea id="challenges" class="form-input" rows="3"
+                            placeholder="描述在开发过程中遇到的主要困难..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="next-steps">下一步计划</label>
+                        <textarea id="next-steps" class="form-input" rows="3" placeholder="概述接下来的工作计划..."></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label" for="attachment">附件上传</label>
+                        <input type="file" id="attachment" class="form-input">
+                    </div>
+                    <button type="submit" class="btn btn-primary">提交</button>
+                </form>
+            </div>
+        </div>
+
+        <div class="thread-item">
+            <div class="thread-meta">
+                <span>提交者：TeamA</span>
+                <span>提交时间：2024-04-15 14:30</span>
+            </div>
+            <div>
+                <h3>项目进度报告 v1.0</h3>
+                <p><strong>进度报告：</strong>我们已经完成了知识图谱的初步构建。具体进展如下：</p>
+                <ul>
+                    <li>使用GraphRAG技术构建了涵盖计算机系统基础核心概念的知识图谱</li>
+                    <li>成功导入了课程大纲和教材内容，建立了约500个核心概念节点</li>
+                    <li>实现了基本的概念关联和层级结构</li>
+                </ul>
+
+                <p><strong>遇到的挑战：</strong>在构建过程中，我们遇到了以下主要困难：</p>
+                <ul>
+                    <li>确保概念之间关系的准确性和完整性</li>
+                    <li>处理同义词和近义词概念的归一化</li>
+                </ul>
+
+                <p><strong>下一步计划：</strong></p>
+                <ul>
+                    <li>优化知识图谱的结构，增加更多的关系类型</li>
+                    <li>开始实现基础的自然语言处理功能，以支持简单的问答交互</li>
+                    <li>准备开发原型用户界面的设计方案</li>
+                </ul>
+
+                <p><strong>附件：</strong> <a href="#">知识图谱初步构建报告.pdf</a></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        let isTaskClaimed = false;
+
+        function toggleTaskAction() {
+            const btn = document.getElementById('taskActionBtn');
+            if (!isTaskClaimed) {
+                btn.textContent = '提交任务';
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-secondary');
+                isTaskClaimed = true;
+                // 这里可以添加领取任务的逻辑，比如发送请求到服务器
+            } else {
+                // 如果任务已领取，点击"提交任务"按钮时展开表单并跳转
+                showAndScrollToForm();
+            }
+        }
+
+        function showAndScrollToForm() {
+            if (!isTaskClaimed) {
+                alert('请先领取任务');
+                return;
+            }
+            var content = document.getElementById("formContent");
+            var toggle = document.getElementById("formToggle");
+            var formSection = document.querySelector('.submission-form');
+            var header = document.querySelector('.task-header');
+
+            // 展开表单
+            content.style.display = "block";
+            toggle.innerHTML = "▲";
+
+            // 计算滚动位置
+            var headerHeight = header.offsetHeight;
+            var formTop = formSection.getBoundingClientRect().top;
+            var scrollPosition = window.pageYOffset + formTop - headerHeight;
+
+            // 滚动到表单位置
+            window.scrollTo({
+                top: scrollPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        // 保留原来的 toggleForm 函数，用于表单标题的点击展开/收起
+        function toggleForm() {
+            if (!isTaskClaimed) {
+                alert('请先领取任务');
+                return;
+            }
+            var content = document.getElementById("formContent");
+            var toggle = document.getElementById("formToggle");
+            if (content.style.display === "none" || content.style.display === "") {
+                content.style.display = "block";
+                toggle.innerHTML = "▲";
+            } else {
+                content.style.display = "none";
+                toggle.innerHTML = "▼";
+            }
+        }
+    </script>
+</body>
+
+</html>

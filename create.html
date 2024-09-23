@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>创建新内容 - 知是学业社区</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292f;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .form-section {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
+        .form-textarea {
+            min-height: 100px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            text-align: center;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            appearance: none;
+        }
+
+        .btn-primary {
+            color: #ffffff;
+            background-color: #2da44e;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .btn-secondary {
+            color: #24292f;
+            background-color: #f6f8fa;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .subtask {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .subtask-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .form-field {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 4px;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #d0d7de;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+
+        .tab.active {
+            border-bottom-color: #0969da;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="contentForm">
+            <div class="form-section">
+                <div class="form-title">选择类别</div>
+                <div class="form-group">
+                    <label class="form-label" for="category">内容类别</label>
+                    <select id="category" class="form-select" required onchange="loadCategoryTemplate()">
+                        <option value="">请选择类别</option>
+                        <option value="first-phase">第一期赛题</option>
+                        <option value="research-project">研究项目</option>
+                        <option value="course-assignment">课程作业</option>
+                        <option value="announcement">公告</option>
+                        <option value="course-qa">课程问答</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="contentDetails" style="display: none;">
+                <!-- 内容详情将根据选择的类别动态加载 -->
+            </div>
+
+            <div class="form-section" id="submitButtons" style="display: none;">
+                <button type="submit" class="btn btn-primary">发布内容</button>
+                <button type="button" class="btn btn-secondary" onclick="saveAsDraft()">保存为草稿</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function loadCategoryTemplate() {
+            const category = document.getElementById('category').value;
+            const contentDetails = document.getElementById('contentDetails');
+            const submitButtons = document.getElementById('submitButtons');
+
+            if (category) {
+                contentDetails.style.display = 'block';
+                submitButtons.style.display = 'block';
+                contentDetails.innerHTML = ''; // 清空现有内容
+
+                // 根据选择的类别加载相应的模板
+                switch (category) {
+                    case 'first-phase':
+                        addBasicInfoSection();
+                        addFirstPhaseSubtasks();
+                        break;
+                    case 'research-project':
+                        addBasicInfoSection();
+                        addResearchProjectSubtasks();
+                        break;
+                    case 'course-assignment':
+                        addBasicInfoSection();
+                        addCourseAssignmentSubtasks();
+                        break;
+                    case 'announcement':
+                        addAnnouncementTemplate();
+                        break;
+                    case 'course-qa':
+                        addCourseQATemplate();
+                        break;
+                }
+            } else {
+                contentDetails.style.display = 'none';
+                submitButtons.style.display = 'none';
+            }
+        }
+
+        function addFirstPhaseSubtasks() {
+            const contentDetails = document.getElementById('contentDetails');
+            const subtasksContainer = document.createElement('div');
+            subtasksContainer.id = 'subtasks';
+            contentDetails.appendChild(subtasksContainer);
+
+            addSubtaskLiXiang();
+            addSubtaskZhongQi();
+            addSubtaskJieXiang();
+        }
+
+        function addSubtaskLiXiang() {
+            const subtasksContainer = document.getElementById('subtasks');
+            const subtaskDiv = document.createElement('div');
+            subtaskDiv.className = 'subtask';
+            subtaskDiv.innerHTML = `
+                <div class="subtask-title">立项</div>
+                <div class="form-group">
+                    <label class="form-label">描述</label>
+                    <textarea class="form-textarea">提交项目立项报告，包括研究背景、目标和方法论。</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">截止日期</label>
+                    <input type="date" class="form-input" value="2024-04-30" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">提交表单</label>
+                    <div class="form-field">
+                        <label>项目名称</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-field">
+                        <label>团队成员信息</label>
+                        <div id="teamMembers">
+                            <div class="member-info">
+                                <input type="text" class="form-input" placeholder="姓名" required>
+                                <input type="text" class="form-input" placeholder="学号" required>
+                            </div>
+                        </div>
+                        <button type="button" class="add-member-btn" onclick="addTeamMember()">添加成员</button>
+                    </div>
+                    <div class="form-field">
+                        <label>研究背景（不超过500字）</label>
+                        <textarea class="form-textarea" maxlength="500" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>研究目标（不超过300字）</label>
+                        <textarea class="form-textarea" maxlength="300" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>研究方法（不超过500字）</label>
+                        <textarea class="form-textarea" maxlength="500" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>预期成果（不超过300字）</label>
+                        <textarea class="form-textarea" maxlength="300" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>项目计划书</label>
+                        <input type="file" class="form-input" required>
+                    </div>
+                </div>
+            `;
+            subtasksContainer.appendChild(subtaskDiv);
+        }
+
+        function addSubtaskZhongQi() {
+            const subtasksContainer = document.getElementById('subtasks');
+            const subtaskDiv = document.createElement('div');
+            subtaskDiv.className = 'subtask';
+            subtaskDiv.innerHTML = `
+                <div class="subtask-title">中期</div>
+                <div class="form-group">
+                    <label class="form-label">描述</label>
+                    <textarea class="form-textarea">提交项目中期进展报告，包括初步研究成果和下一步计划。</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">截止日期</label>
+                    <input type="date" class="form-input" value="2024-06-30" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">提交表单</label>
+                    <div class="form-field">
+                        <label>项目名称</label>
+                        <input type="text" class="form-input" required>
+                    </div>
+                    <div class="form-field">
+                        <label>研究进展概述（不超过1000字）</label>
+                        <textarea class="form-textarea" maxlength="1000" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>已完成的主要工作（不超过500字）</label>
+                        <textarea class="form-textarea" maxlength="500" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>遇到的主要问题和解决方案（不超过500字）</label>
+                        <textarea class="form-textarea" maxlength="500" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>下一阶段工作计划（不超过500字）</label>
+                        <textarea class="form-textarea" maxlength="500" required></textarea>
+                    </div>
+                    <div class="form-field">
+                        <label>中期报告文件</label>
+                        <input type="file" class="form-input" required>
+                    </div>
+                    <div class="form-field">
+                        <label>研究数据或阶段性成果（如有）</label>
+                        <input type="file" class="form-input">
+                    </div>
+                </div>
+            `;
+            subtasksContainer.appendChild(subtaskDiv);
+        }
+
+        function addSubtaskJieXiang() {
+            const subtasksContainer = document.getElementById('subtasks');
+            const subtaskDiv = document.createElement('div');
+            subtaskDiv.className = 'subtask';
+            subtaskDiv.innerHTML = `
+                <div class="subtask-title">结项</div>
+                <div class="form-group">
+                    <label class="form-label">描述</label>
+                    <textarea class="form-textarea">提交项目最终报告，包括完整研究成果、结论和未来展望。</textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">截止日期</label>
+                    <input type="date" class="form-input" value="2024-08-31" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">提交表单</label>
+                    <div class="form-field">
+                        <label>项目总结报告</label>
+                        <input type="file" class="form-input" required>
+                    </div>
+                    <div class="form-field">
+                        <label>研究成果文件（论文、专利、软件等）</label>
+                        <input type="file" class="form-input" multiple>
+                    </div>
+                    <div class="form-field">
+                        <label>项目展示材料（PPT或视频）</label>
+                        <input type="file" class="form-input" required>
+                    </div>
+                </div>
+            `;
+            subtasksContainer.appendChild(subtaskDiv);
+        }
+
+        function addResearchProjectSubtasks() {
+            const contentDetails = document.getElementById('contentDetails');
+            const subtasksContainer = document.createElement('div');
+            subtasksContainer.id = 'subtasks';
+            contentDetails.appendChild(subtasksContainer);
+
+            addSubtask('文献综述', '2024-05-15', '完成相关领域的文献综述，明确研究方向和创新点。');
+            addSubtask('实验设计', '2024-06-30', '设计并完成初步实验，收集数据。');
+            addSubtask('论文撰写', '2024-08-15', '根据研究成果撰写学术论文。');
+        }
+
+        function addCourseAssignmentSubtasks() {
+            const contentDetails = document.getElementById('contentDetails');
+            const subtasksContainer = document.createElement('div');
+            subtasksContainer.id = 'subtasks';
+            contentDetails.appendChild(subtasksContainer);
+
+            addSubtask('作业完成', '2024-05-01', '按照课程要求完成指定作业。');
+            addSubtask('同伴评议', '2024-05-07', '参与同伴评议，为其他同学的作业提供反馈。');
+            addSubtask('修改提交', '2024-05-14', '根据反馈修改作业并提交最终版本。');
+        }
+
+        function addSubtask(title, dueDate, description) {
+            const subtasksContainer = document.getElementById('subtasks');
+            const subtaskDiv = document.createElement('div');
+            subtaskDiv.className = 'subtask';
+            subtaskDiv.innerHTML = `
+                <div class="task-vote">
+                    <button class="vote-button">
+                        <span class="vote-icon">↑</span>
+                        <span class="vote-count">0</span>
+                    </button>
+                </div>
+                <div class="task-content">
+                    <div class="task-header">
+                        <div class="task-main">
+                            <div class="task-meta">
+                                <span class="task-creator">系统</span>
+                                <span class="task-date">刚刚创建</span>
+                            </div>
+                            <div class="task-title">${title}</div>
+                        </div>
+                        <div class="task-status-deadline">
+                            <div class="task-status">待开始</div>
+                            <div class="task-deadline">
+                                <span class="deadline-icon">⏰</span>
+                                <span class="deadline-date">${dueDate}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="task-footer">
+                        <div class="task-tags">
+                            <a href="#" class="task-tag">子任务</a>
+                        </div>
+                        <span class="task-participants" title="参与人数">
+                            <span class="participants-icon">👤</span> 待分配
+                        </span>
+                    </div>
+                    <div class="subtask-description">
+                        <textarea class="form-textarea">${description}</textarea>
+                    </div>
+                </div>
+            `;
+            subtasksContainer.appendChild(subtaskDiv);
+        }
+        function addBasicInfoSection() {
+            const contentDetails = document.getElementById('contentDetails');
+            const basicInfoDiv = document.createElement('div');
+            basicInfoDiv.className = 'form-section';
+            basicInfoDiv.innerHTML = `
+                <div class="form-title">基本信息</div>
+                <div class="form-group">
+                    <label class="form-label" for="contentTitle">标题</label>
+                    <input type="text" id="contentTitle" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contentDescription">描述</label>
+                    <textarea id="contentDescription" class="form-textarea" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contentPriority">优先级</label>
+                    <select id="contentPriority" class="form-select" required>
+                        <option value="low">低</option>
+                        <option value="medium">中</option>
+                        <option value="high">高</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="contentTags">标签（用逗号分隔）</label>
+                    <input type="text" id="contentTags" class="form-input">
+                </div>
+            `;
+            contentDetails.appendChild(basicInfoDiv);
+        }
+
+        function addAnnouncementTemplate() {
+            const contentDetails = document.getElementById('contentDetails');
+            const announcementDiv = document.createElement('div');
+            announcementDiv.className = 'form-section';
+            announcementDiv.innerHTML = `
+                <div class="form-title">公告内容</div>
+                <div class="form-group">
+                    <label class="form-label" for="announcementTitle">公告标题</label>
+                    <input type="text" id="announcementTitle" class="form-input" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="announcementContent">公告内容</label>
+                    <textarea id="announcementContent" class="form-textarea" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="announcementExpiration">过期日期</label>
+                    <input type="date" id="announcementExpiration" class="form-input">
+                </div>
+            `;
+            contentDetails.appendChild(announcementDiv);
+        }
+
+        function addCourseQATemplate() {
+            const contentDetails = document.getElementById('contentDetails');
+            const qaDiv = document.createElement('div');
+            qaDiv.className = 'form-section';
+            qaDiv.innerHTML = `
+                <div class="form-title">课程问答</div>
+                <div class="form-group">
+                    <label class="form-label" for="qaQuestion">问题</label>
+                    <textarea id="qaQuestion" class="form-textarea" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="qaCourse">相关课程</label>
+                    <input type="text" id="qaCourse" class="form-input" required>
+                </div>
+            `;
+            contentDetails.appendChild(qaDiv);
+        }
+
+        function addTeamMember() {
+            const teamMembers = document.getElementById('teamMembers');
+            const memberDiv = document.createElement('div');
+            memberDiv.className = 'member-info';
+            memberDiv.innerHTML = `
+                <input type="text" class="form-input" placeholder="姓名" required>
+                <input type="text" class="form-input" placeholder="学号" required>
+            `;
+            teamMembers.appendChild(memberDiv);
+        }
+
+        function saveAsDraft() {
+            // 实现保存草稿的逻辑
+            alert('内容已保存为草稿');
+        }
+
+        document.getElementById('contentForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+            // 实现提交表单的逻辑
+            alert('内容已发布');
+        });
+    </script>
+</body>
+
+</html>

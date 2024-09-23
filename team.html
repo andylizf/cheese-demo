@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GraphRAG 研究小组 - 知是学业社区</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #24292f;
+            background-color: #f6f8fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            padding: 12px 0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left,
+        .nav-center,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-right: 16px;
+            color: #24292f;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .search-bar {
+            width: 300px;
+            padding: 5px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #24292f;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            box-shadow: inset 0 1px 0 rgba(208, 215, 222, 0.2);
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .team-banner {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            padding: 24px 0;
+            margin-bottom: 24px;
+        }
+
+        .team-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .team-icon {
+            width: 64px;
+            height: 64px;
+            margin-right: 16px;
+            border-radius: 8px;
+        }
+
+        .team-details h1 {
+            margin: 0 0 8px 0;
+            font-size: 24px;
+        }
+
+        .team-details p {
+            margin: 0;
+            color: #57606a;
+        }
+
+        .main-content {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+        }
+
+        .sidebar {
+            width: 256px;
+            padding: 16px;
+            border-right: 1px solid #d0d7de;
+        }
+
+        .team-nav-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0 0 20px 0;
+        }
+
+        .team-nav-item {
+            padding: 10px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            color: #24292f;
+            border-bottom: 1px solid #e1e4e8;
+        }
+
+        .team-nav-item:hover {
+            background-color: #f6f8fa;
+        }
+
+        .team-nav-item.active {
+            font-weight: 600;
+            color: #0366d6;
+        }
+
+        .team-nav-item .nav-icon {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+
+        .member-list {
+            margin-top: 16px;
+        }
+
+        .member-list h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #24292f;
+        }
+
+        .member-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .member-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        .content {
+            flex: 1;
+            padding: 16px;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            margin: 0;
+            font-size: 20px;
+            color: #24292f;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            white-space: nowrap;
+            vertical-align: middle;
+            cursor: pointer;
+            user-select: none;
+            border: 1px solid;
+            border-radius: 6px;
+            background-color: #2da44e;
+            color: #ffffff;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background-color: #2da44e;
+            border-color: rgba(27, 31, 36, 0.15);
+        }
+
+        .task-list,
+        .file-list,
+        .discussion-list,
+        .resource-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .task-item,
+        .file-item,
+        .discussion-item,
+        .resource-item {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 8px;
+        }
+
+        .task-title,
+        .file-name,
+        .discussion-title,
+        .resource-title {
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .task-meta,
+        .file-meta,
+        .discussion-meta,
+        .resource-meta {
+            font-size: 12px;
+            color: #57606a;
+        }
+
+        .task-item {
+            display: flex;
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+
+        .task-vote {
+            margin-right: 16px;
+        }
+
+        .vote-button {
+            display: flex;
+            align-items: center;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 20px;
+            padding: 4px 8px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .vote-button:hover {
+            background-color: #e1e4e8;
+        }
+
+        .vote-icon {
+            margin-right: 4px;
+        }
+
+        .vote-count {
+            font-weight: 600;
+        }
+
+        .task-content {
+            flex-grow: 1;
+        }
+
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .task-main {
+            flex-grow: 1;
+        }
+
+        .task-meta {
+            font-size: 12px;
+            color: #57606a;
+            margin-bottom: 4px;
+        }
+
+        .task-title {
+            font-weight: 600;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .task-status-deadline {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+
+        .task-status {
+            font-weight: 600;
+            color: #0366d6;
+            margin-bottom: 4px;
+        }
+
+        .task-deadline {
+            font-size: 14px;
+            color: #24292f;
+        }
+
+        .task-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .task-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .task-tag {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 12px;
+            color: #24292f;
+            text-decoration: none;
+        }
+
+        .task-participants {
+            font-size: 14px;
+            color: #57606a;
+        }
+
+        .task-item.task-completed {
+            background-color: #f6f8fa;
+        }
+
+        .task-item.task-completed .task-status {
+            color: #6e7781;
+        }
+
+        .task-item.task-completed .task-title {
+            color: #57606a;
+        }
+
+        .task-item.task-completed .task-deadline,
+        .task-item.task-completed .task-meta,
+        .task-item.task-completed .task-participants {
+            color: #8c959f;
+        }
+
+        .task-item.task-completed .task-tag {
+            background-color: #f1f2f4;
+            color: #656d76;
+        }
+
+        .task-item.task-completed .vote-button {
+            opacity: 0.7;
+        }
+
+        /* 讨论区样式 */
+        .discussion-section,
+        .resource-section {
+            margin-bottom: 24px;
+        }
+
+        .discussion-input {
+            display: flex;
+            margin-bottom: 16px;
+        }
+
+        .discussion-input input {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 4px;
+            margin-right: 8px;
+        }
+
+        .discussion-input button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            background-color: #0366d6;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .sidebar {
+                width: 200px;
+            }
+
+            .team-nav-item {
+                font-size: 14px;
+            }
+
+            .member-list h3 {
+                font-size: 16px;
+            }
+
+            .btn {
+                padding: 6px 12px;
+                font-size: 12px;
+            }
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="container nav">
+            <div class="nav-left">
+                <a href="#" class="nav-item">🧀 知是学业社区</a>
+                <a href="#" class="nav-item">问答</a>
+                <a href="./space.html" class="nav-item">空间</a>
+                <a href="./team.html" class="nav-item">小队</a>
+            </div>
+            <div class="nav-center">
+                <input type="text" class="search-bar" placeholder="搜索...">
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-item">✉️</a>
+                <div class="user-info">
+                    <img src="/api/placeholder/32/32" alt="User Avatar" class="user-avatar">
+                    <span>用户名</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="team-banner">
+        <div class="container team-info">
+            <img src="/api/placeholder/64/64" alt="团队图标" class="team-icon">
+            <div class="team-details">
+                <h1>GraphRAG 研究小组</h1>
+                <p>探索 Graph RAG 在教育领域的应用</p>
+            </div>
+        </div>
+    </div>
+
+    <main class="container main-content">
+        <aside class="sidebar">
+            <ul class="team-nav-list">
+                <li class="team-nav-item active">
+                    <span class="nav-icon">📊</span> 概览
+                </li>
+                <li class="team-nav-item">
+                    <span class="nav-icon">💬</span> 讨论
+                </li>
+                <li class="team-nav-item">
+                    <span class="nav-icon">📝</span> 任务
+                </li>
+                <li class="team-nav-item">
+                    <span class="nav-icon">📁</span> 文件
+                </li>
+                <li class="team-nav-item">
+                    <span class="nav-icon">📚</span> 资源共享
+                </li>
+            </ul>
+            <div class="member-list">
+                <h3>团队成员</h3>
+                <div class="member-item">
+                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
+                    <span>张三（组长）</span>
+                </div>
+                <div class="member-item">
+                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
+                    <span>李四</span>
+                </div>
+                <div class="member-item">
+                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
+                    <span>王五</span>
+                </div>
+            </div>
+        </aside>
+        <div class="content">
+            <!-- 概览 -->
+            <div class="overview-section">
+                <div class="section-header">
+                    <h2>团队概览</h2>
+                </div>
+                <p>欢迎来到GraphRAG研究小组！在这里，我们致力于探索Graph RAG技术在教育领域的应用，提升教育质量和效率。</p>
+            </div>
+
+            <!-- 讨论区 -->
+            <div class="discussion-section">
+                <div class="section-header">
+                    <h2>讨论区</h2>
+                </div>
+                <div class="discussion-input">
+                    <input type="text" placeholder="输入您的消息...">
+                    <button>发送</button>
+                </div>
+                <ul class="discussion-list">
+                    <li class="discussion-item">
+                        <div class="discussion-title">讨论主题1</div>
+                        <div class="discussion-meta">张三 发表于 2024-04-25</div>
+                        <p>这是讨论内容的简要描述。</p>
+                    </li>
+                    <li class="discussion-item">
+                        <div class="discussion-title">讨论主题2</div>
+                        <div class="discussion-meta">李四 发表于 2024-04-24</div>
+                        <p>这是另一个讨论内容的简要描述。</p>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 任务区 -->
+            <div class="task-section">
+                <div class="section-header">
+                    <h2>任务列表</h2>
+                    <button class="btn btn-primary">创建任务</button>
+                </div>
+                <ul class="task-list">
+                    <li class="task-item">
+                        <div class="task-vote">
+                            <button class="vote-button">
+                                <span class="vote-icon">↑</span>
+                                <span class="vote-count">5</span>
+                            </button>
+                        </div>
+                        <div class="task-content">
+                            <div class="task-header">
+                                <div class="task-main">
+                                    <div class="task-meta">
+                                        <span class="task-creator">张三</span>
+                                        <span class="task-date">发布于 2024-04-15</span>
+                                    </div>
+                                    <a href="./task.html" class="task-link">
+                                        <div class="task-title">实现GraphRAG核心算法</div>
+                                    </a>
+                                </div>
+                                <div class="task-status-deadline">
+                                    <div class="task-status">进行中</div>
+                                    <div class="task-deadline">
+                                        <span class="deadline-icon">⏰</span>
+                                        <span class="deadline-date">2024-05-15</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="task-footer">
+                                <div class="task-tags">
+                                    <a href="#" class="task-tag">算法</a>
+                                    <a href="#" class="task-tag">GraphRAG</a>
+                                </div>
+                                <span class="task-participants" title="参与人数">
+                                    <span class="participants-icon">👤</span> 1 人
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- 其他任务项类似更新 -->
+                </ul>
+            </div>
+
+            <!-- 文件区 -->
+            <div class="file-section">
+                <div class="section-header">
+                    <h2>最近文件</h2>
+                    <button class="btn btn-primary">上传文件</button>
+                </div>
+                <ul class="file-list">
+                    <li class="file-item">
+                        <div class="file-name">📄 GraphRAG技术报告.pdf</div>
+                        <div class="file-meta">上传者：张三 | 2024-03-20</div>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-name">📊 实验数据分析.xlsx</div>
+                        <div class="file-meta">上传者：李四 | 2024-03-18</div>
+                    </li>
+                    <li class="file-item">
+                        <div class="file-name">📝 会议纪要.docx</div>
+                        <div class="file-meta">上传者：王五 | 2024-03-15</div>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 资源共享区 -->
+            <div class="resource-section">
+                <div class="section-header">
+                    <h2>资源共享</h2>
+                    <button class="btn btn-primary">上传资源</button>
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <div class="resource-title">📚 GraphRAG教程</div>
+                        <div class="resource-meta">上传者：张三 | 2024-04-20</div>
+                        <p>这是资源的简要描述。</p>
+                    </li>
+                    <li class="resource-item">
+                        <div class="resource-title">📄 项目文档</div>
+                        <div class="resource-meta">上传者：李四 | 2024-04-18</div>
+                        <p>这是另一份资源的简要描述。</p>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>

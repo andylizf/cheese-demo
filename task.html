@@ -195,10 +195,95 @@
         .btn-secondary:hover {
             background-color: #f6f8fa;
         }
+
+        .header {
+            background-color: #ffffff;
+            border-bottom: 1px solid #d0d7de;
+            padding: 16px 0;
+        }
+
+        .nav {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-left,
+        .nav-center,
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #24292f;
+            text-decoration: none;
+            font-weight: 500;
+            margin-right: 16px;
+        }
+
+        .nav-item.logo {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .search-bar {
+            padding: 6px 12px;
+            font-size: 14px;
+            line-height: 20px;
+            color: #24292f;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            width: 240px;
+        }
+
+        .user-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .nav-center {
+                display: none;
+            }
+
+            .nav-item {
+                margin-right: 12px;
+            }
+        }
     </style>
 </head>
 
 <body>
+    <header class="header">
+        <nav class="container nav">
+            <div class="nav-left">
+                <a href="./index.html" class="nav-item logo">🧀 知是学业社区</a>
+                <a href="#" class="nav-item">问答</a>
+                <a href="./space.html" class="nav-item">空间</a>
+                <a href="./team.html" class="nav-item">小队</a>
+            </div>
+            <div class="nav-center">
+                <input type="text" class="search-bar" placeholder="搜索...">
+            </div>
+            <div class="nav-right">
+                <a href="#" class="nav-item">✉️</a>
+                <div class="user-info">
+                    <img src="/api/placeholder/32/32" alt="User Avatar" class="user-avatar">
+                    <span>用户名</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
     <main class="container main-content">
         <div class="task-header">
             <div>

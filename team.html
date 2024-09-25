@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GraphRAG 研究小组 - 知是学业社区</title>
+    <title>知是学业社区 - 计算机协会社团工作区</title>
     <style>
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
@@ -47,20 +47,16 @@
             font-weight: 500;
         }
 
-        .nav-item.logo {
-            font-size: 18px;
-            font-weight: 600;
-        }
-
         .search-bar {
-            padding: 6px 12px;
+            width: 300px;
+            padding: 5px 12px;
             font-size: 14px;
             line-height: 20px;
             color: #24292f;
             background-color: #f6f8fa;
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            width: 240px;
+            box-shadow: inset 0 1px 0 rgba(208, 215, 222, 0.2);
         }
 
         .user-info {
@@ -75,372 +71,422 @@
             margin-right: 8px;
         }
 
-        .team-banner {
-            background-color: #ffffff;
-            border-bottom: 1px solid #d0d7de;
-            padding: 24px 0;
-            margin-bottom: 24px;
-        }
-
-        .team-info {
-            display: flex;
-            align-items: center;
-        }
-
-        .team-icon {
-            width: 64px;
-            height: 64px;
-            margin-right: 16px;
-            border-radius: 8px;
-        }
-
-        .team-details h1 {
-            margin: 0 0 8px 0;
-            font-size: 24px;
-        }
-
-        .team-details p {
-            margin: 0;
-            color: #57606a;
-        }
-
         .main-content {
             display: flex;
+            margin-top: 24px;
+        }
+
+        .workspace-sidebar {
+            width: 300px;
             background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
-        }
-
-        .sidebar {
-            width: 256px;
             padding: 16px;
-            border-right: 1px solid #d0d7de;
-        }
-
-        .team-nav-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 0 20px 0;
-        }
-
-        .team-nav-item {
-            padding: 10px 0;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            font-size: 16px;
-            color: #24292f;
-            border-bottom: 1px solid #e1e4e8;
-        }
-
-        .team-nav-item:hover {
-            background-color: #f6f8fa;
-        }
-
-        .team-nav-item.active {
-            font-weight: 600;
-            color: #0366d6;
-        }
-
-        .team-nav-item .nav-icon {
-            margin-right: 8px;
-            font-size: 18px;
-        }
-
-        .member-list {
-            margin-top: 16px;
-        }
-
-        .member-list h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            color: #24292f;
-        }
-
-        .member-item {
-            display: flex;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .member-avatar {
-            width: 24px;
-            height: 24px;
-            border-radius: 50%;
-            margin-right: 8px;
+            margin-right: 24px;
         }
 
         .content {
             flex: 1;
-            padding: 16px;
-        }
-
-        .section-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-        }
-
-        .section-header h2 {
-            margin: 0;
-            font-size: 20px;
-            color: #24292f;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            line-height: 20px;
-            white-space: nowrap;
-            vertical-align: middle;
-            cursor: pointer;
-            user-select: none;
-            border: 1px solid;
-            border-radius: 6px;
-            background-color: #2da44e;
-            color: #ffffff;
-            text-decoration: none;
-        }
-
-        .btn-primary {
-            background-color: #2da44e;
-            border-color: rgba(27, 31, 36, 0.15);
-        }
-
-        .task-list,
-        .file-list,
-        .discussion-list,
-        .resource-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .task-item,
-        .file-item,
-        .discussion-item,
-        .resource-item {
-            background-color: #f6f8fa;
+            background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
-            padding: 12px;
-            margin-bottom: 8px;
+            padding: 24px;
         }
 
-        .task-title,
-        .file-name,
-        .discussion-title,
-        .resource-title {
-            font-weight: 600;
-            margin-bottom: 4px;
-        }
-
-        .task-meta,
-        .file-meta,
-        .discussion-meta,
-        .resource-meta {
-            font-size: 12px;
-            color: #57606a;
-        }
-
-        .task-item {
-            display: flex;
+        .knowledge-sidebar {
+            width: 250px;
             background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
             padding: 16px;
+            margin-left: 24px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            padding: 5px 16px;
+            font-size: 14px;
+            font-weight: 500;
+            line-height: 20px;
+            color: #ffffff;
+            background-color: #2da44e;
+            border: 1px solid rgba(27, 31, 36, 0.15);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .workspace-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 16px 0 0 0;
+        }
+
+        .workspace-item {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 8px;
+            overflow: hidden;
+        }
+
+        .workspace-header {
+            padding: 12px;
+            cursor: pointer;
+        }
+
+        .workspace-header:hover {
+            background-color: #f0f3f6;
+        }
+
+        .workspace-title {
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+        }
+
+        .workspace-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #57606a;
+            margin-top: 4px;
+        }
+
+        .subproject-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            border-top: 1px solid #d0d7de;
+        }
+
+        .subproject-item {
+            padding: 8px 12px 8px 24px;
+            font-size: 14px;
+            color: #24292f;
+            cursor: pointer;
+        }
+
+        .subproject-item:hover {
+            background-color: #f0f3f6;
+        }
+
+        .project-icon {
+            margin-right: 8px;
+            font-size: 16px;
+        }
+
+        .toggle-icon {
+            margin-left: auto;
+            font-size: 12px;
+        }
+
+        .discussion-item {
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
             margin-bottom: 16px;
         }
 
-        .task-vote {
-            margin-right: 16px;
+        .discussion-header {
+            background-color: #f6f8fa;
+            padding: 12px;
+            border-bottom: 1px solid #d0d7de;
         }
 
-        .vote-button {
+        .discussion-body,
+        .comment-body {
+            padding: 16px;
+        }
+
+        .comment-body {
+            border-top: 1px solid #d0d7de;
+            background-color: #f6f8fa;
+            margin-left: 20px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 12px;
+        }
+
+        .reaction-bar {
             display: flex;
+            gap: 8px;
+            margin-top: 12px;
+        }
+
+        .reaction {
+            display: inline-flex;
             align-items: center;
             background-color: #f6f8fa;
             border: 1px solid #d0d7de;
             border-radius: 20px;
             padding: 4px 8px;
+            font-size: 12px;
             cursor: pointer;
-            transition: background-color 0.2s;
         }
 
-        .vote-button:hover {
-            background-color: #e1e4e8;
+        .file-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+            gap: 12px;
         }
 
-        .vote-icon {
+        .file-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 8px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            text-align: center;
+            transition: background-color 0.2s ease;
+        }
+
+        .file-item:hover {
+            background-color: #f6f8fa;
+        }
+
+        .file-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .file-name {
+            font-size: 12px;
+            word-break: break-word;
+        }
+
+        .reaction-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 4px 8px;
+            font-size: 12px;
+            line-height: 1;
+            color: #57606a;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 100px;
+            cursor: pointer;
+        }
+
+        .reaction-button:hover {
+            background-color: #f3f4f6;
+        }
+
+        .reaction-button svg {
             margin-right: 4px;
         }
 
-        .vote-count {
+        .reaction-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .reaction-dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #ffffff;
+            min-width: 160px;
+            box-shadow: 0 8px 24px rgba(140, 149, 159, 0.2);
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            z-index: 1;
+            padding: 4px;
+        }
+
+        .reaction-dropdown:hover .reaction-dropdown-content {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .reaction-item {
+            padding: 4px 8px;
+            cursor: pointer;
+            border-radius: 6px;
+        }
+
+        .reaction-item:hover {
+            background-color: #f6f8fa;
+        }
+
+        .message-block {
+            background-color: #ffffff;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            padding: 16px;
+        }
+
+        .comments-section {
+            margin-top: 16px;
+            margin-left: 24px;
+            border-left: 2px solid #d0d7de;
+            padding-left: 16px;
+        }
+
+        .comment-body {
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            padding: 12px;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .message-content {
+            margin-bottom: 12px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 4px;
+            margin: 0 4px;
+        }
+
+        .btn-icon:hover {
+            background-color: #f0f0f0;
+            border-radius: 4px;
+        }
+
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 12px;
+        }
+
+        .file-attachment .icon {
+            margin-right: 8px;
+        }
+
+        .file-attachment .file-name {
+            flex-grow: 1;
+            margin-right: 8px;
+        }
+
+        .file-attachment .file-size {
+            color: #57606a;
+            font-size: 12px;
+            margin-right: 8px;
+        }
+
+        .comment-input {
+            margin-top: 20px;
+        }
+
+        .comment-input textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            resize: vertical;
+        }
+
+        .comment-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 8px;
+        }
+
+        .file-attachment {
+            display: flex;
+            align-items: center;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            padding: 8px;
+            margin-top: 8px;
+            flex-wrap: nowrap;
+            position: relative;
+        }
+
+        .file-attachment .add-to-kb {
+            position: absolute;
+            transform: translateY(-50%);
+            z-index: 1;
+            right: 8px;
+            top: 30%;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
+        }
+
+        .file-icon {
+            font-size: 24px;
+            margin-right: 12px;
+        }
+
+        .file-info {
+            flex-grow: 1;
+            padding-right: 32px;
+        }
+
+        .file-name {
             font-weight: 600;
         }
 
-        .task-content {
-            flex-grow: 1;
+        .file-size {
+            font-size: 12px;
+            color: #57606a;
         }
 
-        .task-header {
+        .add-to-kb {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            color: #57606a;
+            cursor: pointer;
+            opacity: 0.6;
+            transition: opacity 0.2s;
             display: flex;
+            align-items: center;
+        }
+
+        .add-to-kb:hover {
+            opacity: 1;
+        }
+
+        .file-attachment .add-to-kb {
+            margin-left: auto;
+        }
+
+        .message-block,
+        .comment-body {
+            position: relative;
+        }
+
+        .knowledge-header {
+            display: flex;
+            align-items: center;
             justify-content: space-between;
             margin-bottom: 12px;
         }
 
-        .task-main {
-            flex-grow: 1;
-        }
-
-        .task-meta {
-            font-size: 12px;
-            color: #57606a;
-            margin-bottom: 4px;
-        }
-
-        .task-title {
-            font-weight: 600;
-            font-size: 16px;
-            margin-bottom: 4px;
-        }
-
-        .task-status-deadline {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-end;
-        }
-
-        .task-status {
-            font-weight: 600;
-            color: #0366d6;
-            margin-bottom: 4px;
-        }
-
-        .task-deadline {
-            font-size: 14px;
-            color: #24292f;
-        }
-
-        .task-footer {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .task-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .task-tag {
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 20px;
-            padding: 4px 12px;
-            font-size: 12px;
-            color: #24292f;
-            text-decoration: none;
-        }
-
-        .task-participants {
-            font-size: 14px;
-            color: #57606a;
-        }
-
-        .task-item.task-completed {
-            background-color: #f6f8fa;
-        }
-
-        .task-item.task-completed .task-status {
-            color: #6e7781;
-        }
-
-        .task-item.task-completed .task-title {
-            color: #57606a;
-        }
-
-        .task-item.task-completed .task-deadline,
-        .task-item.task-completed .task-meta,
-        .task-item.task-completed .task-participants {
-            color: #8c959f;
-        }
-
-        .task-item.task-completed .task-tag {
-            background-color: #f1f2f4;
-            color: #656d76;
-        }
-
-        .task-item.task-completed .vote-button {
-            opacity: 0.7;
-        }
-
-        /* 讨论区样式 */
-        .discussion-section,
-        .resource-section {
-            margin-bottom: 24px;
-        }
-
-        .discussion-input {
-            display: flex;
-            margin-bottom: 16px;
-        }
-
-        .discussion-input input {
-            flex: 1;
-            padding: 8px;
-            border: 1px solid #d0d7de;
-            border-radius: 4px;
-            margin-right: 8px;
-        }
-
-        .discussion-input button {
-            padding: 8px 16px;
+        .btn-add-to-kb {
+            background: none;
             border: none;
-            border-radius: 4px;
-            background-color: #0366d6;
-            color: #ffffff;
             cursor: pointer;
+            padding: 4px;
+            color: #57606a;
+            transition: color 0.2s;
         }
 
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            .nav-center {
-                display: none;
-            }
-
-            .nav-item {
-                margin-right: 12px;
-            }
-
-            .sidebar {
-                width: 200px;
-            }
-
-            .team-nav-item {
-                font-size: 14px;
-            }
-
-            .member-list h3 {
-                font-size: 16px;
-            }
-
-            .btn {
-                padding: 6px 12px;
-                font-size: 12px;
-            }
-        }
-
-        .content-section {
-            display: none;
-        }
-
-        .content-section.active {
-            display: block;
+        .btn-add-to-kb:hover {
+            color: #24292f;
         }
     </style>
 </head>
@@ -467,173 +513,242 @@
         </nav>
     </header>
 
-    <div class="team-banner">
-        <div class="container team-info">
-            <img src="/api/placeholder/64/64" alt="团队图标" class="team-icon">
-            <div class="team-details">
-                <h1>GraphRAG 研究小组</h1>
-                <p>探索 Graph RAG 在教育领域的应用</p>
-            </div>
-        </div>
-    </div>
-
     <main class="container main-content">
-        <aside class="sidebar">
-            <ul class="team-nav-list">
-                <li class="team-nav-item active">
-                    <span class="nav-icon">📊</span> 概览
+        <aside class="workspace-sidebar">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h3 style="margin: 0;">工作区</h3>
+                <button class="btn">
+                    <span class="btn-icon">+</span>
+                    新建项目
+                </button>
+            </div>
+            <ul class="workspace-list">
+                <li class="workspace-item">
+                    <div class="workspace-header">
+                        <div class="workspace-title">
+                            <span class="project-icon">📂</span>
+                            社团活动
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="workspace-meta">
+                            <span>👤 张三</span>
+                            <span>📅 2024-12-31</span>
+                        </div>
+                    </div>
+                    <ul class="subproject-list">
+                        <li class="subproject-item">
+                            <span class="project-icon">📌</span>
+                            百团大战
+                        </li>
+                        <li class="subproject-item">
+                            <span class="project-icon">📌</span>
+                            招新会
+                        </li>
+                    </ul>
                 </li>
-                <li class="team-nav-item">
-                    <span class="nav-icon">💬</span> 讨论
-                </li>
-                <li class="team-nav-item">
-                    <span class="nav-icon">📝</span> 任务
-                </li>
-                <li class="team-nav-item">
-                    <span class="nav-icon">📁</span> 文件
-                </li>
-                <li class="team-nav-item">
-                    <span class="nav-icon">📚</span> 资源共享
+                <li class="workspace-item">
+                    <div class="workspace-header">
+                        <div class="workspace-title">
+                            <span class="project-icon">📂</span>
+                            技术项目
+                            <span class="toggle-icon">▼</span>
+                        </div>
+                        <div class="workspace-meta">
+                            <span>👤 李四</span>
+                            <span>📅 2024-11-30</span>
+                        </div>
+                    </div>
                 </li>
             </ul>
-            <div class="member-list">
-                <h3>团队成员</h3>
-                <div class="member-item">
-                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
-                    <span>张三（组长）</span>
+        </aside>
+        <div class="content">
+            <h2>百团大战</h2>
+            <div class="message-block">
+                <div class="message-header">
+                    <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                    <div>
+                        <div><strong>李四</strong></div>
+                        <div style="color: #57606a; font-size: 12px;">2024-08-15 10:30</div>
+                    </div>
                 </div>
-                <div class="member-item">
-                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
-                    <span>李四</span>
+                <div class="message-content">
+                    <div class="message-content">
+                        <p>大家好，关于百团大战的摊位设计，我有一些想法想和大家分享：</p>
+                        <ol>
+                            <li>我们可以设计一个互动式的编程展示区，让参观者体验简单的编程。</li>
+                            <li>准备一些有趣的计算机科学小知识展板，吸引同学们的注意。</li>
+                            <li>考虑设置一个小型的VR体验区，展示我们在虚拟现实方面的项目。</li>
+                        </ol>
+                        <p>大家有什么想法吗？欢迎讨论！</p>
+                        <div class="file-attachment">
+                            <div class="file-icon">📄</div>
+                            <div class="file-info">
+                                <div class="file-name">百团大战初步策划.docx</div>
+                                <div class="file-size">2.3 MB</div>
+                            </div>
+                            <div class="add-to-kb" title="添加到知识库">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="member-item">
-                    <img src="/api/placeholder/24/24" alt="成员头像" class="member-avatar">
-                    <span>王五</span>
+                <div class="reaction-bar">
+                    <div class="reaction-dropdown">
+                        <button class="reaction-button">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                <path fill-rule="evenodd"
+                                    d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                </path>
+                            </svg>
+                        </button>
+                        <div class="reaction-dropdown-content">
+                            <span class="reaction-item">👍</span>
+                            <span class="reaction-item">👎</span>
+                            <span class="reaction-item">😄</span>
+                            <span class="reaction-item">🎉</span>
+                            <span class="reaction-item">😕</span>
+                            <span class="reaction-item">❤️</span>
+                            <span class="reaction-item">🚀</span>
+                            <span class="reaction-item">👀</span>
+                        </div>
+                        <span class="reaction">👍 5</span>
+                        <span class="reaction">🎉 2</span>
+                        <span class="reaction">💡 3</span>
+                    </div>
+                </div>
+                <div class="add-to-kb" title="添加整个消息到知识库">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                    </svg>
+                </div>
+            </div>
+            <div class="comments-section">
+                <div class="comment-body">
+                    <div class="message-header">
+                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <div>
+                            <div><strong>王五</strong></div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 11:45</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>我觉得互动式编程展示区的想法很棒！我们可以准备一些简单有趣的编程任务，让参观者亲自尝试。这样不仅能吸引人，还能让大家对编程产生兴趣。</p>
+                    </div>
+                    <div class="reaction-bar">
+                        <div class="reaction-dropdown">
+                            <button class="reaction-button">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="reaction-dropdown-content">
+                                <span class="reaction-item">👍</span>
+                                <span class="reaction-item">👎</span>
+                                <span class="reaction-item">😄</span>
+                                <span class="reaction-item">🎉</span>
+                                <span class="reaction-item">😕</span>
+                                <span class="reaction-item">❤️</span>
+                                <span class="reaction-item">🚀</span>
+                                <span class="reaction-item">👀</span>
+                            </div>
+                        </div>
+                        <span class="reaction">👍 5</span>
+                        <span class="reaction">🎉 2</span>
+                        <span class="reaction">💡 3</span>
+                    </div>
+                    <div class="add-to-kb" title="添加到知识库">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="comment-body">
+                    <div class="message-header">
+                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <div>
+                            <div><strong>张三</strong></div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 14:20</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>VR体验区确实能吸引很多人，但我们需要考虑设备和空间的问题。也许可以准备一个小型的VR演示？我们可以展示一些我们开发的VR项目片段，让参观者通过头显快速体验。</p>
+                    </div>
+                    <div class="reaction-bar">
+                        <div class="reaction-dropdown">
+                            <button class="reaction-button">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="reaction-dropdown-content">
+                                <span class="reaction-item">👍</span>
+                                <span class="reaction-item">👎</span>
+                                <span class="reaction-item">😄</span>
+                                <span class="reaction-item">🎉</span>
+                                <span class="reaction-item">😕</span>
+                                <span class="reaction-item">❤️</span>
+                                <span class="reaction-item">🚀</span>
+                                <span class="reaction-item">👀</span>
+                            </div>
+                        </div>
+                        <span class="reaction">👍 5</span>
+                        <span class="reaction">🎉 2</span>
+                        <span class="reaction">💡 3</span>
+                    </div>
+                    <div class="add-to-kb" title="添加到知识库">
+                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                        </svg>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <textarea style="width: 100%; padding: 10px; border: 1px solid #d0d7de; border-radius: 6px;"
+                        rows="4" placeholder="添加评论..."></textarea>
+                    <button class="btn" style="margin-top: 10px;">发送</button>
+                </div>
+            </div>
+        </div>
+        </div>
+        <aside class="knowledge-sidebar">
+            <div class="knowledge-header">
+                <h3>
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                    </svg>
+                    知识库
+                </h3>
+            </div>
+
+            <div class="file-list">
+                <div class="file-item">
+                    <div class="file-icon">📄</div>
+                    <div class="file-name">百团大战策划书</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">🖼️</div>
+                    <div class="file-name">摊位设计图</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">📊</div>
+                    <div class="file-name">上届总结</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">🖼️</div>
+                    <div class="file-name">宣传海报</div>
                 </div>
             </div>
         </aside>
-        <div class="content">
-            <!-- 概览 -->
-            <div class="overview-section">
-                <div class="section-header">
-                    <h2>团队概览</h2>
-                </div>
-                <p>欢迎来到GraphRAG研究小组！在这里，我们致力于探索Graph RAG技术在教育领域的应用，提升教育质量和效率。</p>
-            </div>
-
-            <!-- 讨论区 -->
-            <div class="discussion-section">
-                <div class="section-header">
-                    <h2>讨论区</h2>
-                </div>
-                <div class="discussion-input">
-                    <input type="text" placeholder="输入您的消息...">
-                    <button>发送</button>
-                </div>
-                <ul class="discussion-list">
-                    <li class="discussion-item">
-                        <div class="discussion-title">讨论主题1</div>
-                        <div class="discussion-meta">张三 发表于 2024-04-25</div>
-                        <p>这是讨论内容的简要描述。</p>
-                    </li>
-                    <li class="discussion-item">
-                        <div class="discussion-title">讨论主题2</div>
-                        <div class="discussion-meta">李四 发表于 2024-04-24</div>
-                        <p>这是另一个讨论内容的简要描述。</p>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 任务区 -->
-            <div class="task-section">
-                <div class="section-header">
-                    <h2>任务列表</h2>
-                    <button class="btn btn-primary">创建任务</button>
-                </div>
-                <ul class="task-list">
-                    <li class="task-item">
-                        <div class="task-vote">
-                            <button class="vote-button">
-                                <span class="vote-icon">↑</span>
-                                <span class="vote-count">5</span>
-                            </button>
-                        </div>
-                        <div class="task-content">
-                            <div class="task-header">
-                                <div class="task-main">
-                                    <div class="task-meta">
-                                        <span class="task-creator">张三</span>
-                                        <span class="task-date">发布于 2024-04-15</span>
-                                    </div>
-                                    <a href="./task.html" class="task-link">
-                                        <div class="task-title">实现GraphRAG核心算法</div>
-                                    </a>
-                                </div>
-                                <div class="task-status-deadline">
-                                    <div class="task-status">进行中</div>
-                                    <div class="task-deadline">
-                                        <span class="deadline-icon">⏰</span>
-                                        <span class="deadline-date">2024-05-15</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="task-footer">
-                                <div class="task-tags">
-                                    <a href="#" class="task-tag">算法</a>
-                                    <a href="#" class="task-tag">GraphRAG</a>
-                                </div>
-                                <span class="task-participants" title="参与人数">
-                                    <span class="participants-icon">👤</span> 1 人
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <!-- 其他任务项类似更新 -->
-                </ul>
-            </div>
-
-            <!-- 文件区 -->
-            <div class="file-section">
-                <div class="section-header">
-                    <h2>最近文件</h2>
-                    <button class="btn btn-primary">上传文件</button>
-                </div>
-                <ul class="file-list">
-                    <li class="file-item">
-                        <div class="file-name">📄 GraphRAG技术报告.pdf</div>
-                        <div class="file-meta">上传者：张三 | 2024-03-20</div>
-                    </li>
-                    <li class="file-item">
-                        <div class="file-name">📊 实验数据分析.xlsx</div>
-                        <div class="file-meta">上传者：李四 | 2024-03-18</div>
-                    </li>
-                    <li class="file-item">
-                        <div class="file-name">📝 会议纪要.docx</div>
-                        <div class="file-meta">上传者：王五 | 2024-03-15</div>
-                    </li>
-                </ul>
-            </div>
-
-            <!-- 资源共享区 -->
-            <div class="resource-section">
-                <div class="section-header">
-                    <h2>资源共享</h2>
-                    <button class="btn btn-primary">上传资源</button>
-                </div>
-                <ul class="resource-list">
-                    <li class="resource-item">
-                        <div class="resource-title">📚 GraphRAG教程</div>
-                        <div class="resource-meta">上传者：张三 | 2024-04-20</div>
-                        <p>这是资源的简要描述。</p>
-                    </li>
-                    <li class="resource-item">
-                        <div class="resource-title">📄 项目文档</div>
-                        <div class="resource-meta">上传者：李四 | 2024-04-18</div>
-                        <p>这是另一份资源的简要描述。</p>
-                    </li>
-                </ul>
-            </div>
-        </div>
     </main>
 </body>
 

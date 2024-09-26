@@ -122,7 +122,8 @@
             margin: 16px 0 0 0;
         }
 
-        .workspace-item {
+        .workspace-item,
+        .subproject-item {
             background-color: #f6f8fa;
             border: 1px solid #d0d7de;
             border-radius: 6px;
@@ -130,22 +131,31 @@
             overflow: hidden;
         }
 
-        .workspace-header {
+        .subproject-item {
+            margin-left: 20px;
+            background-color: #f0f3f6;
+        }
+
+        .workspace-header,
+        .subproject-header {
             padding: 12px;
             cursor: pointer;
         }
 
-        .workspace-header:hover {
+        .workspace-header:hover,
+        .subproject-header:hover {
             background-color: #f0f3f6;
         }
 
-        .workspace-title {
+        .workspace-title,
+        .subproject-title {
             font-weight: 600;
             display: flex;
             align-items: center;
         }
 
-        .workspace-meta {
+        .workspace-meta,
+        .subproject-meta {
             display: flex;
             justify-content: space-between;
             font-size: 12px;
@@ -153,55 +163,28 @@
             margin-top: 4px;
         }
 
-        .subproject-list {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-            border-top: 1px solid #d0d7de;
-        }
-
-        .subproject-item {
-            padding: 8px 12px 8px 24px;
-            font-size: 14px;
-            color: #24292f;
-            cursor: pointer;
-        }
-
-        .subproject-item:hover {
-            background-color: #f0f3f6;
-        }
-
-        .project-icon {
-            margin-right: 8px;
-            font-size: 16px;
-        }
-
         .toggle-icon {
             margin-left: auto;
             font-size: 12px;
         }
 
-        .discussion-item {
+        .message-block {
+            background-color: #ffffff;
             border: 1px solid #d0d7de;
             border-radius: 6px;
             margin-bottom: 16px;
-        }
-
-        .discussion-header {
-            background-color: #f6f8fa;
-            padding: 12px;
-            border-bottom: 1px solid #d0d7de;
-        }
-
-        .discussion-body,
-        .comment-body {
             padding: 16px;
+            position: relative;
         }
 
-        .comment-body {
-            border-top: 1px solid #d0d7de;
-            background-color: #f6f8fa;
-            margin-left: 20px;
+        .message-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .message-content {
+            margin-bottom: 12px;
         }
 
         .avatar {
@@ -259,25 +242,46 @@
             word-break: break-word;
         }
 
-        .reaction-button {
-            display: inline-flex;
+        .github-link,
+        .task-link {
+            display: flex;
             align-items: center;
-            padding: 4px 8px;
-            font-size: 12px;
-            line-height: 1;
-            color: #57606a;
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 100px;
+            font-size: 14px;
+            color: #0366d6;
+            text-decoration: none;
+            margin-right: 16px;
+        }
+
+        .github-link:hover,
+        .task-link:hover {
+            text-decoration: underline;
+        }
+
+        .subproject-list {
+            border-left: 2px solid #d0d7de;
+            margin-left: 10px;
+            padding-left: 10px;
+        }
+
+        .subproject-color {
+            width: 12px;
+            height: 12px;
+            display: inline-block;
+            margin-right: 8px;
+            border-radius: 50%;
             cursor: pointer;
         }
 
-        .reaction-button:hover {
-            background-color: #f3f4f6;
+        .subproject-message {
+            border-left-width: 4px;
+            border-left-style: solid;
         }
 
-        .reaction-button svg {
-            margin-right: 4px;
+        .comment {
+            margin-left: 20px;
+            border-left: 2px solid #d0d7de;
+            padding-left: 16px;
+            margin-top: 12px;
         }
 
         .reaction-dropdown {
@@ -312,168 +316,11 @@
             background-color: #f6f8fa;
         }
 
-        .message-block {
-            background-color: #ffffff;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            padding: 16px;
-        }
-
-        .comments-section {
-            margin-top: 16px;
-            margin-left: 24px;
-            border-left: 2px solid #d0d7de;
-            padding-left: 16px;
-        }
-
-        .comment-body {
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            padding: 12px;
-        }
-
-        .message-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-
-        .message-content {
-            margin-bottom: 12px;
-        }
-
-        .btn-icon {
-            background: none;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            padding: 4px;
-            margin: 0 4px;
-        }
-
-        .btn-icon:hover {
-            background-color: #f0f0f0;
-            border-radius: 4px;
-        }
-
-        .file-attachment {
-            display: flex;
-            align-items: center;
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 8px;
-            margin-top: 12px;
-        }
-
-        .file-attachment .icon {
-            margin-right: 8px;
-        }
-
-        .file-attachment .file-name {
-            flex-grow: 1;
-            margin-right: 8px;
-        }
-
-        .file-attachment .file-size {
-            color: #57606a;
-            font-size: 12px;
-            margin-right: 8px;
-        }
-
-        .comment-input {
-            margin-top: 20px;
-        }
-
-        .comment-input textarea {
-            width: 100%;
-            padding: 10px;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            resize: vertical;
-        }
-
-        .comment-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 8px;
-        }
-
-        .file-attachment {
-            display: flex;
-            align-items: center;
-            background-color: #f6f8fa;
-            border: 1px solid #d0d7de;
-            border-radius: 6px;
-            padding: 8px;
-            margin-top: 8px;
-            flex-wrap: nowrap;
-            position: relative;
-        }
-
-        .file-attachment .add-to-kb {
-            position: absolute;
-            transform: translateY(-50%);
-            z-index: 1;
-            right: 8px;
-            top: 30%;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .file-icon {
-            font-size: 24px;
-            margin-right: 12px;
-        }
-
-        .file-info {
-            flex-grow: 1;
-            padding-right: 32px;
-        }
-
-        .file-name {
-            font-weight: 600;
-        }
-
-        .file-size {
-            font-size: 12px;
-            color: #57606a;
-        }
-
-        .add-to-kb {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            color: #57606a;
-            cursor: pointer;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-            display: flex;
-            align-items: center;
-        }
-
-        .add-to-kb:hover {
-            opacity: 1;
-        }
-
-        .file-attachment .add-to-kb {
-            margin-left: auto;
-        }
-
-        .message-block,
-        .comment-body {
-            position: relative;
-        }
-
-        .knowledge-header {
+        .content-header {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 12px;
+            margin-bottom: 20px;
         }
 
         .btn-add-to-kb {
@@ -488,6 +335,60 @@
         .btn-add-to-kb:hover {
             color: #24292f;
         }
+
+        .knowledge-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .external-collaborator {
+            background-color: #f0f6ff;
+            border: 1px solid #c8e1ff;
+            border-radius: 3px;
+            padding: 2px 5px;
+            font-size: 12px;
+            margin-left: 4px;
+        }
+
+        .subproject-indicator {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #0366d6;
+            color: white;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .project-management {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #d0d7de;
+        }
+
+        .project-management-btn {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #f6f8fa;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+            color: #24292f;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .project-management-btn:hover {
+            background-color: #f0f3f6;
+        }
+
+        .header-buttons {
+            display: flex;
+            align-items: center;
+        }
     </style>
 </head>
 
@@ -495,10 +396,10 @@
     <header class="header">
         <nav class="container nav">
             <div class="nav-left">
-                <a href="./index.html" class="nav-item logo">🧀 知是学业社区</a>
+                <a href="#" class="nav-item">🧀 知是学业社区</a>
                 <a href="#" class="nav-item">问答</a>
-                <a href="./space.html" class="nav-item">空间</a>
-                <a href="./team.html" class="nav-item">小队</a>
+                <a href="#" class="nav-item">空间</a>
+                <a href="#" class="nav-item">小队</a>
             </div>
             <div class="nav-center">
                 <input type="text" class="search-bar" placeholder="搜索...">
@@ -506,8 +407,8 @@
             <div class="nav-right">
                 <a href="#" class="nav-item">✉️</a>
                 <div class="user-info">
-                    <img src="./avatar.jpg" alt="User Avatar" class="user-avatar">
-                    <span>andylizf</span>
+                    <img src="/api/placeholder/32/32" alt="User Avatar" class="user-avatar">
+                    <span>用户名</span>
                 </div>
             </div>
         </nav>
@@ -517,172 +418,119 @@
         <aside class="workspace-sidebar">
             <div style="display: flex; justify-content: space-between; align-items: center;">
                 <h3 style="margin: 0;">工作区</h3>
-                <button class="btn">
-                    <span class="btn-icon">+</span>
-                    新建项目
-                </button>
+                <div>
+                    <button class="project-management-btn">管理项目</button>
+                    <button class="btn">
+                        <span class="btn-icon">+</span>
+                        新建项目
+                    </button>
+                </div>
             </div>
             <ul class="workspace-list">
                 <li class="workspace-item">
-                    <div class="workspace-header">
+                    <div class="workspace-header" onclick="filterMessages('all')">
                         <div class="workspace-title">
-                            <span class="project-icon">📂</span>
-                            社团活动
+                            RAG助教管理系统
                             <span class="toggle-icon">▼</span>
                         </div>
                         <div class="workspace-meta">
-                            <span>👤 张三</span>
+                            <span>👤 张三<span class="external-collaborator">+李四</span></span>
                             <span>📅 2024-12-31</span>
                         </div>
                     </div>
                     <ul class="subproject-list">
                         <li class="subproject-item">
-                            <span class="project-icon">📌</span>
-                            百团大战
+                            <div class="subproject-header" onclick="filterMessages('前端开发')">
+                                <div class="subproject-title">
+                                    <span class="subproject-color" style="background-color: #28a745;"
+                                        onclick="toggleSubproject(event, '前端开发')"></span>
+                                    前端开发
+                                </div>
+                                <div class="subproject-meta">
+                                    <span>👤 李四</span>
+                                    <span>📅 2024-11-30</span>
+                                </div>
+                            </div>
                         </li>
                         <li class="subproject-item">
-                            <span class="project-icon">📌</span>
-                            招新会
+                            <div class="subproject-header" onclick="filterMessages('后端开发')">
+                                <div class="subproject-title">
+                                    <span class="subproject-color" style="background-color: #6f42c1;"
+                                        onclick="toggleSubproject(event, '后端开发')"></span>
+                                    后端开发
+                                </div>
+                                <div class="subproject-meta">
+                                    <span>👤 王五</span>
+                                    <span>📅 2024-11-15</span>
+                                </div>
+                            </div>
+                        </li>
+                        <li class="subproject-item">
+                            <div class="subproject-header" onclick="filterMessages('数据库设计')">
+                                <div class="subproject-title">
+                                    <span class="subproject-color" style="background-color: #d73a49;"
+                                        onclick="toggleSubproject(event, '数据库设计')"></span>
+                                    数据库设计
+                                </div>
+                                <div class="subproject-meta">
+                                    <span>👤 赵六</span>
+                                    <span>📅 2024-10-31</span>
+                                </div>
+                            </div>
                         </li>
                     </ul>
                 </li>
                 <li class="workspace-item">
                     <div class="workspace-header">
                         <div class="workspace-title">
-                            <span class="project-icon">📂</span>
-                            技术项目
+                            社团招新
                             <span class="toggle-icon">▼</span>
                         </div>
                         <div class="workspace-meta">
-                            <span>👤 李四</span>
-                            <span>📅 2024-11-30</span>
+                            <span>👤 王五</span>
+                            <span>📅 2024-09-30</span>
                         </div>
                     </div>
                 </li>
             </ul>
         </aside>
         <div class="content">
-            <h2>百团大战</h2>
-            <div class="message-block">
-                <div class="message-header">
-                    <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
-                    <div>
-                        <div><strong>李四</strong></div>
-                        <div style="color: #57606a; font-size: 12px;">2024-08-15 10:30</div>
-                    </div>
-                </div>
-                <div class="message-content">
-                    <div class="message-content">
-                        <p>大家好，关于百团大战的摊位设计，我有一些想法想和大家分享：</p>
-                        <ol>
-                            <li>我们可以设计一个互动式的编程展示区，让参观者体验简单的编程。</li>
-                            <li>准备一些有趣的计算机科学小知识展板，吸引同学们的注意。</li>
-                            <li>考虑设置一个小型的VR体验区，展示我们在虚拟现实方面的项目。</li>
-                        </ol>
-                        <p>大家有什么想法吗？欢迎讨论！</p>
-                        <div class="file-attachment">
-                            <div class="file-icon">📄</div>
-                            <div class="file-info">
-                                <div class="file-name">百团大战初步策划.docx</div>
-                                <div class="file-size">2.3 MB</div>
-                            </div>
-                            <div class="add-to-kb" title="添加到知识库">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="reaction-bar">
-                    <div class="reaction-dropdown">
-                        <button class="reaction-button">
-                            <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                <path fill-rule="evenodd"
-                                    d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
-                                </path>
-                            </svg>
-                        </button>
-                        <div class="reaction-dropdown-content">
-                            <span class="reaction-item">👍</span>
-                            <span class="reaction-item">👎</span>
-                            <span class="reaction-item">😄</span>
-                            <span class="reaction-item">🎉</span>
-                            <span class="reaction-item">😕</span>
-                            <span class="reaction-item">❤️</span>
-                            <span class="reaction-item">🚀</span>
-                            <span class="reaction-item">👀</span>
-                        </div>
-                        <span class="reaction">👍 5</span>
-                        <span class="reaction">🎉 2</span>
-                        <span class="reaction">💡 3</span>
-                    </div>
-                </div>
-                <div class="add-to-kb" title="添加整个消息到知识库">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                        <path fill-rule="evenodd"
-                            d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
-                    </svg>
-                </div>
-            </div>
-            <div class="comments-section">
-                <div class="comment-body">
-                    <div class="message-header">
-                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
-                        <div>
-                            <div><strong>王五</strong></div>
-                            <div style="color: #57606a; font-size: 12px;">2024-08-15 11:45</div>
-                        </div>
-                    </div>
-                    <div class="message-content">
-                        <p>我觉得互动式编程展示区的想法很棒！我们可以准备一些简单有趣的编程任务，让参观者亲自尝试。这样不仅能吸引人，还能让大家对编程产生兴趣。</p>
-                    </div>
-                    <div class="reaction-bar">
-                        <div class="reaction-dropdown">
-                            <button class="reaction-button">
-                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                                    <path fill-rule="evenodd"
-                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
-                                    </path>
-                                </svg>
-                            </button>
-                            <div class="reaction-dropdown-content">
-                                <span class="reaction-item">👍</span>
-                                <span class="reaction-item">👎</span>
-                                <span class="reaction-item">😄</span>
-                                <span class="reaction-item">🎉</span>
-                                <span class="reaction-item">😕</span>
-                                <span class="reaction-item">❤️</span>
-                                <span class="reaction-item">🚀</span>
-                                <span class="reaction-item">👀</span>
-                            </div>
-                        </div>
-                        <span class="reaction">👍 5</span>
-                        <span class="reaction">🎉 2</span>
-                        <span class="reaction">💡 3</span>
-                    </div>
-                    <div class="add-to-kb" title="添加到知识库">
+            <div class="content-header">
+                <h2 id="project-title">RAG助教管理系统</h2>
+                <div class="header-buttons">
+                    <a href="task.html" class="task-link">
                         <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                             <path fill-rule="evenodd"
-                                d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
+                                d="M2.5 3.5a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0 3a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0 3a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm0 3a.5.5 0 0 1 0-1h11a.5.5 0 0 1 0 1h-11zm.5-9a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm0 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm0 3a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z" />
                         </svg>
-                    </div>
+                        RAG助教管理系统任务
+                    </a>
+                    <a href="https://github.com/username/repo" class="github-link">
+                        <svg height="32" aria-hidden="true" viewBox="0 0 16 16" version="1.1" width="32"
+                            data-view-component="true" class="octicon octicon-mark-github v-align-middle">
+                            <path fill-rule="evenodd"
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z">
+                            </path>
+                        </svg>
+                        username/repo
+                    </a>
                 </div>
-                <div class="comment-body">
+            </div>
+            <div id="message-container">
+                <div class="message-block">
                     <div class="message-header">
                         <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
                         <div>
                             <div><strong>张三</strong></div>
-                            <div style="color: #57606a; font-size: 12px;">2024-08-15 14:20</div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 10:30</div>
                         </div>
                     </div>
                     <div class="message-content">
-                        <p>VR体验区确实能吸引很多人，但我们需要考虑设备和空间的问题。也许可以准备一个小型的VR演示？我们可以展示一些我们开发的VR项目片段，让参观者通过头显快速体验。</p>
+                        <p>大家好，我们开始讨论RAG助教管理系统的开发计划。请各位负责人汇报进度。</p>
                     </div>
                     <div class="reaction-bar">
                         <div class="reaction-dropdown">
-                            <button class="reaction-button">
+                            <button class="reaction">
                                 <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
                                     <path fill-rule="evenodd"
                                         d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
@@ -701,23 +549,160 @@
                             </div>
                         </div>
                         <span class="reaction">👍 5</span>
-                        <span class="reaction">🎉 2</span>
-                        <span class="reaction">💡 3</span>
-                    </div>
-                    <div class="add-to-kb" title="添加到知识库">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-                            <path fill-rule="evenodd"
-                                d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8zM5 12.25v3.25a.25.25 0 00.4.2l1.45-1.087a.25.25 0 01.3 0L8.6 15.7a.25.25 0 00.4-.2v-3.25a.25.25 0 00-.25-.25h-3.5a.25.25 0 00-.25.25z" />
-                        </svg>
+                        <span class="reaction">🚀 3</span>
                     </div>
                 </div>
-                <div style="margin-top: 20px;">
-                    <textarea style="width: 100%; padding: 10px; border: 1px solid #d0d7de; border-radius: 6px;"
-                        rows="4" placeholder="添加评论..."></textarea>
-                    <button class="btn" style="margin-top: 10px;">发送</button>
+                <div class="message-block subproject-message" style="border-left-color: #28a745;"
+                    data-subproject="前端开发">
+                    <div class="subproject-indicator">前端开发</div>
+                    <div class="message-header">
+                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <div>
+                            <div><strong>李四</strong></div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 11:45</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>前端开发进度报告：我们已经完成了登录界面和主控制台的设计。下一步将开始实现学生管理模块。</p>
+                    </div>
+                    <div class="reaction-bar">
+                        <div class="reaction-dropdown">
+                            <button class="reaction">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="reaction-dropdown-content">
+                                <span class="reaction-item">👍</span>
+                                <span class="reaction-item">👎</span>
+                                <span class="reaction-item">😄</span>
+                                <span class="reaction-item">🎉</span>
+                                <span class="reaction-item">😕</span>
+                                <span class="reaction-item">❤️</span>
+                                <span class="reaction-item">🚀</span>
+                                <span class="reaction-item">👀</span>
+                            </div>
+                        </div>
+                        <span class="reaction">👍 3</span>
+                        <span class="reaction">💡 2</span>
+                    </div>
+                    <div class="comment">
+                        <div class="message-header">
+                            <img src="/api/placeholder/32/32" alt="User Avatar" class="avatar">
+                            <div>
+                                <div><strong>张三</strong></div>
+                                <div style="color: #57606a; font-size: 12px;">2024-08-15 12:30</div>
+                            </div>
+                        </div>
+                        <div class="message-content">
+                            <p>很好的进展！请确保学生管理模块的UI设计与我们之前讨论的一致。</p>
+                        </div>
+                        <div class="reaction-bar">
+                            <div class="reaction-dropdown">
+                                <button class="reaction">
+                                    <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <div class="reaction-dropdown-content">
+                                    <span class="reaction-item">👍</span>
+                                    <span class="reaction-item">👎</span>
+                                    <span class="reaction-item">😄</span>
+                                    <span class="reaction-item">🎉</span>
+                                    <span class="reaction-item">😕</span>
+                                    <span class="reaction-item">❤️</span>
+                                    <span class="reaction-item">🚀</span>
+                                    <span class="reaction-item">👀</span>
+                                </div>
+                            </div>
+                            <span class="reaction">👍 2</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="message-block subproject-message" style="border-left-color: #6f42c1;"
+                    data-subproject="后端开发">
+                    <div class="subproject-indicator">后端开发</div>
+                    <div class="message-header">
+                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <div>
+                            <div><strong>王五</strong></div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 14:20</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>后端API已经完成了用户认证和基本的CRUD操作。正在着手实现更复杂的业务逻辑。</p>
+                    </div>
+                    <div class="reaction-bar">
+                        <div class="reaction-dropdown">
+                            <button class="reaction">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="reaction-dropdown-content">
+                                <span class="reaction-item">👍</span>
+                                <span class="reaction-item">👎</span>
+                                <span class="reaction-item">😄</span>
+                                <span class="reaction-item">🎉</span>
+                                <span class="reaction-item">😕</span>
+                                <span class="reaction-item">❤️</span>
+                                <span class="reaction-item">🚀</span>
+                                <span class="reaction-item">👀</span>
+                            </div>
+                        </div>
+                        <span class="reaction">👍 4</span>
+                        <span class="reaction">🎉 2</span>
+                    </div>
+                </div>
+                <div class="message-block subproject-message" style="border-left-color: #d73a49;"
+                    data-subproject="数据库设计">
+                    <div class="subproject-indicator">数据库设计</div>
+                    <div class="message-header">
+                        <img src="/api/placeholder/40/40" alt="User Avatar" class="avatar">
+                        <div>
+                            <div><strong>赵六</strong></div>
+                            <div style="color: #57606a; font-size: 12px;">2024-08-15 16:00</div>
+                        </div>
+                    </div>
+                    <div class="message-content">
+                        <p>数据库模型已经设计完成，包括用户、课程、作业和评分等主要实体。正在进行数据库优化和索引设计。</p>
+                    </div>
+                    <div class="reaction-bar">
+                        <div class="reaction-dropdown">
+                            <button class="reaction">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+                                    <path fill-rule="evenodd"
+                                        d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM8 0a8 8 0 100 16A8 8 0 008 0zM5 8a1 1 0 100-2 1 1 0 000 2zm7-1a1 1 0 11-2 0 1 1 0 012 0zM5.32 9.636a.75.75 0 011.038.175l.007.009c.103.118.22.222.35.31.264.178.683.37 1.285.37.602 0 1.02-.192 1.285-.371.13-.088.247-.192.35-.31l.007-.008a.75.75 0 111.222.87l-.614-.431c.614.43.614.431.613.431v.001l-.001.002-.002.003-.005.007-.014.019a1.984 1.984 0 01-.184.213c-.16.166-.338.316-.53.445-.63.418-1.37.638-2.127.629-.946 0-1.652-.308-2.126-.63a3.32 3.32 0 01-.715-.657l-.014-.02-.005-.006-.002-.003v-.002h-.001l.613-.432-.614.43a.75.75 0 01.183-1.044h.001z">
+                                    </path>
+                                </svg>
+                            </button>
+                            <div class="reaction-dropdown-content">
+                                <span class="reaction-item">👍</span>
+                                <span class="reaction-item">👎</span>
+                                <span class="reaction-item">😄</span>
+                                <span class="reaction-item">🎉</span>
+                                <span class="reaction-item">😕</span>
+                                <span class="reaction-item">❤️</span>
+                                <span class="reaction-item">🚀</span>
+                                <span class="reaction-item">👀</span>
+                            </div>
+                        </div>
+                        <span class="reaction">👍 3</span>
+                        <span class="reaction">🔥 2</span>
+                    </div>
                 </div>
             </div>
-        </div>
+            <div style="margin-top: 20px;">
+                <textarea style="width: 100%; padding: 10px; border: 1px solid #d0d7de; border-radius: 6px;" rows="4"
+                    placeholder="添加评论..."></textarea>
+                <button class="btn" style="margin-top: 10px;">发送</button>
+            </div>
         </div>
         <aside class="knowledge-sidebar">
             <div class="knowledge-header">
@@ -728,28 +713,112 @@
                     </svg>
                     知识库
                 </h3>
+                <button class="btn-add-to-kb">+ 添加</button>
             </div>
 
             <div class="file-list">
                 <div class="file-item">
                     <div class="file-icon">📄</div>
-                    <div class="file-name">百团大战策划书</div>
+                    <div class="file-name">项目需求文档</div>
                 </div>
                 <div class="file-item">
                     <div class="file-icon">🖼️</div>
-                    <div class="file-name">摊位设计图</div>
+                    <div class="file-name">系统架构图</div>
                 </div>
                 <div class="file-item">
                     <div class="file-icon">📊</div>
-                    <div class="file-name">上届总结</div>
+                    <div class="file-name">数据库ER图</div>
                 </div>
                 <div class="file-item">
-                    <div class="file-icon">🖼️</div>
-                    <div class="file-name">宣传海报</div>
+                    <div class="file-icon">📝</div>
+                    <div class="file-name">API文档</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">🔗</div>
+                    <div class="file-name">GitHub仓库链接</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">📅</div>
+                    <div class="file-name">项目时间线</div>
+                </div>
+                <div class="file-item">
+                    <div class="file-icon">📚</div>
+                    <div class="file-name">学习资源</div>
                 </div>
             </div>
         </aside>
     </main>
+
+    <script>
+        const subprojects = ['前端开发', '后端开发', '数据库设计'];
+        const colors = ['#28a745', '#6f42c1', '#d73a49'];
+        const activeSubprojects = new Set(subprojects);
+
+        function filterMessages(subproject) {
+            const messages = document.querySelectorAll('.message-block');
+            const title = document.getElementById('project-title');
+            const subprojectColors = document.querySelectorAll('.subproject-color');
+
+            messages.forEach(message => {
+                if (subproject === 'all') {
+                    message.style.display = 'block';
+                } else if (message.dataset.subproject === subproject) {
+                    message.style.display = 'block';
+                } else {
+                    message.style.display = 'none';
+                }
+            });
+
+            subprojectColors.forEach((colorSpan, index) => {
+                if (subproject === 'all') {
+                    colorSpan.style.backgroundColor = colors[index];
+                } else if (subprojects[index] === subproject) {
+                    colorSpan.style.backgroundColor = colors[index];
+                } else {
+                    colorSpan.style.backgroundColor = '#d0d7de';
+                }
+            });
+
+            title.textContent = subproject === 'all' ? 'RAG助教管理系统' : `RAG助教管理系统 - ${subproject}`;
+
+            // 更新 activeSubprojects 集合
+            activeSubprojects.clear();
+            if (subproject === 'all') {
+                subprojects.forEach(sp => activeSubprojects.add(sp));
+            } else {
+                activeSubprojects.add(subproject);
+            }
+        }
+
+        function toggleSubproject(event, subproject) {
+            event.stopPropagation();
+            const index = subprojects.indexOf(subproject);
+            const color = colors[index];
+            const subprojectColor = event.target;
+
+            if (activeSubprojects.has(subproject)) {
+                activeSubprojects.delete(subproject);
+                subprojectColor.style.backgroundColor = '#d0d7de';
+            } else {
+                activeSubprojects.add(subproject);
+                subprojectColor.style.backgroundColor = color;
+            }
+
+            updateVisibleMessages();
+        }
+
+        function updateVisibleMessages() {
+            const messages = document.querySelectorAll('.message-block');
+            messages.forEach(message => {
+                const subproject = message.dataset.subproject;
+                if (!subproject || activeSubprojects.has(subproject)) {
+                    message.style.display = 'block';
+                } else {
+                    message.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </body>
 
 </html>
